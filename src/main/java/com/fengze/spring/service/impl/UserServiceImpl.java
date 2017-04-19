@@ -76,7 +76,9 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public UserDo findUserById(UserDo userDo) throws Exception {
-        return null;
+        return userMapper.selectOne(userDo);
+
+//       return userMapper.findUserById(userDo.getUserId());
     }
 
     @Override

@@ -63,7 +63,7 @@
     <!--</bean>-->
 
     <bean class="tk.mybatis.spring.mapper.MapperScannerConfigurer">
-        <property name="basePackage" value="com.fengze.spring.mapper" />
+        <property name="basePackage" value="com.fengze.spring.mapper"/>
         <property name="markerInterface" value="tk.mybatis.mapper.common.Mapper"/>
     </bean>
 
@@ -72,10 +72,39 @@
         <property name="dataSource" ref="dataSource"/>
     </bean>
 
-    <tx:annotation-driven transaction-manager="transactionManager" />
+    <tx:annotation-driven transaction-manager="transactionManager"/>
+    <!--AOP XML 配置 切面类 我想要做的事-->
+   <!-- <bean id="aspetBean" class="com.fengze.spring.common.UserAop"/>-->
 
-    <!--&lt;!&ndash;AOP annotation 配置&ndash;&gt;-->
-    <!--<aop:aspectj-autoproxy/>-->
+
+    <!--* 1 execution (* com.fengze.spring.service.impl..*.*(..))-->
+    <!--* 2 execution ： 表示执行-->
+    <!--* 3 第一个*号 : 表示返回值类型， *可以是任意类型-->
+    <!--* 4 com.wangku.spring.service.impl : 代表扫描的包-->
+    <!--* 5 .. : 代表其底下的子包也进行拦截-->
+    <!--* 6 第二个*号 : 代表对哪个类进行拦截，*代表所有类-->
+    <!--* 7 第三个*号 : 代表方法  *代表任意方法-->
+    <!--* 8 (..) : 代表方法的参数有无都可以-->
+    <!--<aop:config>-->
+        <!--<aop:aspect id="aspet" ref="aspetBean">-->
+            <!--<aop:pointcut id="cut" expression="execution (* com.fengze.spring.service.impl..*.*(..))"/>-->
+
+            <!--&lt;!&ndash;前置通知&ndash;&gt;-->
+            <!--<aop:before pointcut-ref="cut" method="doBefore"/>-->
+            <!--&lt;!&ndash;后置通知&ndash;&gt;-->
+            <!--<aop:after-returning pointcut-ref="cut" method="doAferReturning"/>-->
+            <!--&lt;!&ndash;最终通知&ndash;&gt;-->
+            <!--<aop:after pointcut-ref="cut" method="doAfter"/>-->
+            <!--&lt;!&ndash;例外通知&ndash;&gt;-->
+            <!--<aop:after-throwing pointcut-ref="cut" method="doAferThrowing"/>-->
+            <!--&lt;!&ndash;环绕通知&ndash;&gt;-->
+            <!--<aop:around pointcut-ref="cut" method="doAround"/>-->
+        <!--</aop:aspect>-->
+    <!--</aop:config>-->
+
+
+    <!--AOP annotation 配置-->
+    <aop:aspectj-autoproxy/>
 </beans>
 
 

@@ -29,7 +29,7 @@ public class UserServiceImplTest extends BaseSpringTest {
     @Test
     public void testFindUserById() throws Exception {
         UserDo userDo = new UserDo();
-        userDo.setUserId(1);
+        userDo.setUserId(1005);
         UserDo userD1 = userService.findUserById(userDo);
         log.info("UserD1 : {}", userD1);
 
